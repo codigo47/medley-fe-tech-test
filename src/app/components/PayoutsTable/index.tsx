@@ -1,24 +1,23 @@
 import React from 'react';
-import { GenericTable } from '@/components/GenericTable';
+import { GenericTable, ITableProps } from '@/components/GenericTable';
+import { IPayout } from '@/types/IPayout';
 
-export interface IPayout {
-  dateAndTime: string;
-  status: string;
-  value: string;
-  username: string;
-};
+export interface IPayoutTableProps extends ITableProps<IPayout> {}
 
-export interface IPayoutTableHeader {
-  key: string;
-  dataIndex: keyof T;
-  title: string;
-}
-
-export interface IPayoutTableProps {
-  columns: IPayoutTableHeader[];
-  rows: IPayout[];
-};
-
-export const PayoutTable = ({ columns, rows }: IPayoutTableProps) => {
-  return <GenericTable columns={columns} row={rows} />;
+export const PayoutTable = ({
+  title,
+  pageSize,
+  columns,
+  rows,
+  onPageSizeChanged
+}: IPayoutTableProps) => {
+  return (
+    <GenericTable
+      title={title}
+      columns={columns}
+      rows={rows}
+      pageSize={pageSize}
+      onPageSizeChanged={onPageSizeChanged}
+    />
+  );
 };
